@@ -1,0 +1,159 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
+{% endblock %}
+
+{% block page_header %}
+<div class="container header-container">
+    <div class="row">
+        <div class="col"></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid mb-4">
+
+    <div class="row">
+        <div class="col text-center bg-text-title pt-2 text-title">
+            <h1 class="logo-font mb-4">Thank you </h1>
+            <hr class="w-50 mx-auto my-auto mb-0">
+        </div>
+    </div>
+    <!-- checkout success-->
+    <div class="container mt-4 mb-4">
+        <div class="row " style="height: 80px"></div>
+        <div class="row d-flex cart align-items-center justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="d-flex justify-content-center border-bottom">
+                        <div class="p-3">
+                            {% if from_profile %}
+                            <p class="text-black my-auto">Your order information is below. A confirmation email was
+                                sent to
+                                <strong>{{ order.email }}</strong> on the order date!</p>
+                            {% else %}
+                            <p class="text-black my-auto">Your order information is below. A confirmation email will
+                                be
+                                sent to
+                                <strong>{{ order.email }}</strong>!</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="row g-0">
+                        <div class="col-md-6 border-end p-1">
+                            <div class="text-center ">
+                                <div class="d-flex  flex-column align-items-center">
+                                    <p class="  fw-bold">
+                                        Hi <span class="text-black">{{ order.full_name|title }}</span>
+                                    </p>
+                                    <span class="fw-bold mt-1"> Order placed on:
+                                    </span>
+                                    <span class="text-black"> {{ order.date }} </span>
+                                    <small class="mt-1"> <i class="fa fa-check"></i> Confirmed </small>
+                                    <!-- adress -->
+                                    <p class="fw-bold  mt-1 "> Delivery Address: </p>
+                                    <p class="mb-0 text-black">{{ order.street_address1 }}</p>
+                                    {% if order.street_address2 %}
+                                    <p class="mb-0 text-black">{{ order.street_address1 }}</p>
+                                    {% endif %}
+                                    {% if order.county %}
+                                    <p class="mb-0 text-black">{{ order.county }}</p>
+                                    {% endif %}
+                                    <p class="mb-0 text-black">{{ order.town_or_city }}</p>
+                                    {% if order.postcode %}
+                                    <p class="mb-0 text-black">{{ order.postcode }}</p>
+                                    {% endif %}
+                                    <p class="mb-0 text-black">{{ order.country }}</p>
+                                    <p class="mb-0 text-black">Phone Number: {{ order.phone_number }}</p>
+                                    <!-- profile page btn-->
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                <a href="{% url 'profile' %}" class="btn btn-sm btn-fresh mt-1 rounded-pill">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-left"></i>
+                                    </span>
+                                    <span class="text-uppercase">Go to your Profile Page</span>
+                                </a>
+                                {% else %}
+
+                                <a href="{% url 'account_signup' %}" class="btn btn-sm btn-fresh mt-1 rounded-pill">
+                                    <span class="icon">
+                                        <i class="fas fa-chevron-up"></i>
+                                    </span>
+                                    <span class="text-uppercase">Register</span>
+                                </a>
+                                <p class=" small text-muted">For an extra 10% Discount on your next order!</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- order items -->
+                        <div class="col-md-6 bg-light">
+                            <div class=" border-bottom">
+                                {% for item in order.lineitems.all %}
+                                <div class="row g-0 border-bottom">
+                                    <div class="col-md-6 text-center align-middle ">
+                                        <p class="mt-4 "><i class="fa fa-clock-o text-muted"></i> Service Date:
+                                            <p class="small  mb-0 text-black fst-italic">
+                                                {{ item.service_date }}</p>
+                                        </p>
+                                        <h6 class="mt-4 mb-0">{{ item.service.name }}</h6>
+                                        <p class="small mt-4 text-black mb-0">{{ item.quantity }} @
+                                            £{{ item.service.price }}
+                                            each</p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        {% if item.service.image %}
+                                        <img class="img-fluid service-img mt-3 mb-1" src="{{ item.service.image.url }}"
+                                            alt="{{ item.service.name }}">
+                                        {% else %}
+                                        <img class="img-fluid service-img mt-3 mb-1" src="{{ MEDIA_URL }}default.jpg"
+                                            alt="{{ item.service.name }}">
+                                        {% endif %}
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- order financial info -->
+                            <div class="row g-0 border-bottom">
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center">
+                                        <span>Subtotal</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center">
+                                        <span>£{{ order.order_total }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row g-0 border-bottom">
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center">
+                                        <span>Discount</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center">
+                                        <span>£{{ order.discount }}</span> </div>
+                                </div>
+                            </div>
+                            <div class="row g-0">
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span
+                                            class="fw-bold">Total</span> </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="p-3 d-flex justify-content-center align-items-center"> <span
+                                            class="fw-bold">£{{ order.grand_total }}</span> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

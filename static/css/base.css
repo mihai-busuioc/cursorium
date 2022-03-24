@@ -1,0 +1,376 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url('/static/media/home_background.jpg') no-repeat center fixed;
+    background-size: cover;
+    height: 80vh;
+    color: #24ADE3;
+    font-family: 'Merriweather',
+        serif;
+}
+
+.bg-opaque {
+    background: rgba(0, 0, 0, .75);
+}
+
+.bg-home {
+    background: rgba(0, 0, 0, .25);
+}
+
+.bg-text-title {
+    background: rgba(0, 0, 0, .75);
+}
+
+.logo-font {
+    text-transform: uppercase;
+}
+
+.dropdown-menu {
+    background: rgba(0, 0, 0, .75);
+}
+
+.bg-black {
+    background: #000 !important;
+}
+
+.text-black {
+    color: #000 !important;
+}
+
+.border-black {
+    border: 1px solid black !important;
+}
+
+.container-fluid {
+    margin: 0;
+    padding: 0;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: white;
+    z-index: -1;
+}
+
+.title-container {
+    color: white;
+}
+
+.text-title {
+    color: white;
+    text-shadow: 3px 3px black;
+
+
+}
+
+/* ----- Containers----*/
+
+.buy-container {
+    text-align: justify;
+    margin: auto;
+}
+
+.discount-container {
+    position: relative;
+
+    margin-top: -10px;
+}
+
+.message-container {
+    position: fixed;
+    top: 72px;
+    right: 15px;
+    z-index: 99999999999;
+}
+
+
+/* ----- Buttons----*/
+.btn-black {
+    background: black;
+    color: white;
+}
+
+.btn-fresh {
+    background: #24ADE3;
+    color: black;
+}
+
+.btn-fresh:hover,
+.btn-fresh:active,
+.btn-fresh:focus {
+    border: 1px solid #24ADE3;
+    background: transparent;
+    color: black;
+}
+
+.btn-black:hover,
+.btn-black:active,
+.btn-black:focus {
+    border: 1px solid black;
+    background: white;
+    color: black !important;
+    /* important to override link color */
+}
+
+.btn-outline-black {
+    background: white;
+    color: black !important;
+    /* important to override link color */
+    border: 1px solid black;
+}
+
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background: black;
+    color: white !important;
+}
+
+/* ------------------------------- bootstrap toasts */
+
+
+.custom-toast {
+    overflow: visible;
+}
+
+.toast-capper {
+    height: 2px;
+}
+
+/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-up {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 10px solid black;
+    position: absolute;
+    top: -10px;
+    right: 36px;
+}
+
+/* Convenience classes - colors copied from Bootstrap */
+.arrow-primary {
+    border-bottom-color: #007bff !important;
+}
+
+.arrow-secondary {
+    border-bottom-color: #6c757d !important;
+}
+
+.arrow-success {
+    border-bottom-color: #28a745 !important;
+}
+
+.arrow-danger {
+    border-bottom-color: #dc3545 !important;
+}
+
+.arrow-warning {
+    border-bottom-color: #ffc107 !important;
+}
+
+.arrow-info {
+    border-bottom-color: #17a2b8 !important;
+}
+
+.arrow-light {
+    border-bottom-color: #f8f9fa !important;
+}
+
+.arrow-dark {
+    border-bottom-color: #343a40 !important;
+}
+
+.service-img {
+    margin: auto;
+
+    border: 2px solid #24ADE3;
+    border-radius: 50%;
+    width: 66%;
+    display: block;
+}
+
+/* Allauth form formatting */
+
+.allauth-form-inner-content p {
+    margin-top: 1.5rem;
+    /* mt-4 */
+    color: #6c757d;
+    /* text-secondary */
+}
+
+.allauth-form-inner-content input {
+    border-color: #000;
+    border-radius: 5px;
+}
+
+.allauth-form-inner-content label:not([for='id_remember']) {
+    display: none;
+}
+
+.allauth-form-inner-content input::placeholder {
+    color: #aab7c4;
+}
+
+/* Product Form */
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-checkbox .custom-control-label::before {
+    border-radius: 0;
+    border-color: #dc3545;
+}
+
+.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    border-radius: 0;
+}
+
+.btn-floating {
+    height: 42px;
+    width: 42px;
+    position: fixed;
+    bottom: 30px;
+    right: 15px;
+    border-color: #24ADE3;
+    background-color: #24ADE3;
+    z-index: 999;
+
+}
+
+/* Star ratings */
+/*code from https://github.com/Carly07*/
+
+.rating-box {
+    perspective: 1000px;
+}
+
+.stars {
+    position: absolute;
+    -ms-transform: translate(0%, 0%) rotateY(180deg);
+    -moz-transform: translate(0%, 0%) rotateY(180deg);
+    -o-transform: translate(0%, 0%) rotateY(180deg);
+    -webkit-transform: translate(0%, 0%) rotateY(180deg);
+    transform: translate(0%, 0%) rotateY(180deg);
+}
+
+.stars input {
+    display: none;
+}
+
+.stars label {
+    display: inline-block;
+    cursor: pointer;
+    width: 20px;
+    padding-left: 0px;
+}
+
+.stars label:before {
+    content: '\f005';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: relative;
+    display: block;
+    font-size: 20px;
+    color: #cfcfce;
+}
+
+.stars label:after {
+    content: '\f005';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 20px;
+    position: absolute;
+    top: 0;
+    opacity: 0;
+    display: block;
+    color: #24ADE3;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+    text-shadow: 0 2px 2px rgba(0, 0, 0, .5)
+}
+
+.stars label:hover:after,
+.stars label:hover~label:after,
+.stars input:checked~label:after {
+    opacity: 1;
+}
+
+/* ---- Media Q ----*/
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 80%;
+    }
+}
+
+@media (min-width: 992px) {
+    .fixed-top-desktop-only {
+        position: fixed;
+        top: 0;
+        right: 0;
+        left: 0;
+        z-index: 999;
+    }
+
+    .header-container {
+        padding-top: 100px;
+    }
+
+    .discount-container {
+        margin-top: 80px;
+        padding-top: 10px;
+    }
+
+    .desktop-dropdown {
+        top: 100px;
+    }
+
+    .bg-opaque {
+        background: rgba(0, 0, 0, 1);
+
+
+    }
+
+    .bg-text-title {
+        background: transparent;
+        margin-top: 20px;
+        padding-top: 30px;
+    }
+
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+
+}
+
+#footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    height: 3.5rem;
+}
